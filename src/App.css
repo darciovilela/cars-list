@@ -58,11 +58,18 @@ input {
   border-radius: 4px;
   color: white;
   height: 40px;
+  cursor: pointer;
 }
 
 .error {
   color: white;
   background-color: red;
+  padding: 4px;
+}
+
+.success {
+  color: white;
+  background-color: green;
   padding: 4px;
 }
 

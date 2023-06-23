@@ -1,6 +1,8 @@
-import { useState, useEffect, ChangeEvent } from 'react';
+// Importacao do que é necessario
 import { Item } from '../interfaces/car';
+import { useEffect, useState, ChangeEvent } from 'react';
 
+// Declaracao da interface
 interface FormProps {
 	items: Item[];
 	addItem: Function;
@@ -8,6 +10,7 @@ interface FormProps {
 	activeItem: null | Item;
 }
 
+// Componente funcional Form
 export const Form: React.FC<FormProps> = ({
 	items,
 	addItem,
@@ -17,6 +20,7 @@ export const Form: React.FC<FormProps> = ({
 	const [make, setMake] = useState('');
 	const [model, setModel] = useState('');
 	const [errorMessage, setErrorMessage] = useState<string | null>(null);
+	const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
 	useEffect(() => {
 		if (activeItem) {
@@ -41,7 +45,7 @@ export const Form: React.FC<FormProps> = ({
 			const itemExists = items.map((item) => item.model).includes(model);
 
 			if (itemExists) {
-				setErrorMessage(`Item ${model} already exists.`);
+				setErrorMessage(`Model "${model}" already exists.`);
 				return;
 			}
 
@@ -49,6 +53,8 @@ export const Form: React.FC<FormProps> = ({
 				make: make,
 				model: model,
 			});
+			setSuccessMessage(`New car "${model}" added to list.`);
+			return;
 		}
 
 		setMake('');
@@ -67,9 +73,10 @@ export const Form: React.FC<FormProps> = ({
 
 	return (
 		<form onSubmit={handleSubmit}>
-			<fieldset>
+			<fieldset className="fieldset">
 				{errorMessage && <div className="error">{errorMessage}</div>}
-				<legend>Cars</legend>
+				{successMessage && <div className="success">{successMessage}</div>}
+				<legend>Cars</legend>{' '}
 				<input
 					type="text"
 					name="make"
