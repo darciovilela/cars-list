@@ -14,18 +14,16 @@ export const ItemList: React.FC<ItemProps> = ({
 }) => {
 	return (
 		<div>
-			<div>
-				<div className="flex-container">
-					{item.id} - {item.make} / {item.model}
-					<img src={`./${getImageName(item.model)}.png`} alt="" />
-				</div>
-				<button className="edit" onClick={() => setActiveItem(item)}>
-					E
-				</button>
-				<button className="remove" onClick={() => completeItem(item.id)}>
-					X
-				</button>
+			<div className="flex-container">
+				{item.id} - {item.make} - {item.model}
+				<img src={`./${getImageName(item.model)}.png`} alt="" />
 			</div>
+			<button className="edit" onClick={() => setActiveItem(item)}>
+				Edit
+			</button>
+			<button className="remove" onClick={() => completeItem(item.id)}>
+				Delete
+			</button>
 		</div>
 	);
 };

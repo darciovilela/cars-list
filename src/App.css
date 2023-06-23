@@ -23,7 +23,7 @@ h1 {
   border: none;
   padding: 12px;
   margin: 8px;
-  width: 50px;
+  width: 80px;
   color: white;
   font-size: 16px;
   background-color: #c7bebe;
@@ -37,7 +37,7 @@ h1 {
   border: none;
   padding: 12px;
   margin: 8px;
-  width: 50px;
+  width: 80px;
   color: white;
   font-size: 16px;
   background-color: red;
@@ -70,5 +70,12 @@ img {
   width: 100%;
   max-width: 400px;
   margin-top: 10px;
+  border-radius: 8px;
   
+}
+
+.fieldset {
+  border-color: blue;
+  border-radius: 8px;
+  height: 80px;
 }
