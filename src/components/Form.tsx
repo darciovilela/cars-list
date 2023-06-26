@@ -1,7 +1,6 @@
 // Importacao do que é necessario
+import { useState, useEffect, ChangeEvent } from 'react';
 import { Item } from '../interfaces/car';
-import { useEffect, useState, ChangeEvent } from 'react';
-
 // Declaracao da interface
 interface FormProps {
 	items: Item[];
@@ -9,7 +8,6 @@ interface FormProps {
 	updateItem: Function;
 	activeItem: null | Item;
 }
-
 // Componente funcional Form
 export const Form: React.FC<FormProps> = ({
 	items,
@@ -43,22 +41,21 @@ export const Form: React.FC<FormProps> = ({
 			});
 		} else {
 			const itemExists = items.map((item) => item.model).includes(model);
-
 			if (itemExists) {
 				setErrorMessage(`Model "${model}" already exists.`);
 				return;
+			} else {
+				addItem({
+					make: make,
+					model: model,
+				});
 			}
-
-			addItem({
-				make: make,
-				model: model,
-			});
-			setSuccessMessage(`New car "${model}" added to list.`);
-			return;
 		}
-
 		setMake('');
 		setModel('');
+
+		setSuccessMessage(`Car "${model}" inserted to list.`);
+		return;
 	};
 
 	const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -73,10 +70,10 @@ export const Form: React.FC<FormProps> = ({
 
 	return (
 		<form onSubmit={handleSubmit}>
-			<fieldset className="fieldset">
+			<fieldset>
 				{errorMessage && <div className="error">{errorMessage}</div>}
 				{successMessage && <div className="success">{successMessage}</div>}
-				<legend>Cars</legend>{' '}
+				<legend>Cars</legend>
 				<input
 					type="text"
 					name="make"
